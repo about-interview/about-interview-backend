@@ -19,10 +19,7 @@ public class CompanyService {
 
     public Optional<Company> createCompany(@NotBlank final String company_name, @NotBlank final String company_address) {
         if (!companyRepository.existsByNameAndAddress(company_name, company_address)) {
-            Company newCompany = Company.builder()
-                    .name(company_name)
-                    .address(company_address)
-                    .build();
+            Company newCompany = new Company(company_name, company_address);
             companyRepository.save(newCompany);
         }
 
